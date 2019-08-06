@@ -227,9 +227,43 @@ https://about.me/grohit -->
             }
         }*/
 
+/*   ********    * /
+        var noOfRequests = 0;
+        var resp = 1;
+
+        $(function () {
+            $('#startAccepting').click(function (e) {
+                //alert('jq call');
+                e.preventDefault();
+                $('#startBlock').css('display', 'none');
+                $('#counterBlock').css('display', 'block');
+
+                if ($('#FormControlSelectFollowersNo').val() != "custom") {
+                    noOfRequests = $('#FormControlSelectFollowersNo').val();
+                    $('#customUserInputNumber').val(noOfRequests);
+                } else {
+                    noOfRequests = $('#customUserInputNumber').val();
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/accept_pending_requests',
+                    data: {
+                        'customUserInputNumber': noOfRequests
+                    },
+                    success: callback
+                });
+            }, 40000);
+        });
+
+
+/ *   ********    */
+
+
+
         var two = "";
         var noOfRequests = 0;
-                var resp = 1;
+        var resp = 1;
 
         $(function () {
             $('#startAccepting').click(function (e) {
@@ -263,8 +297,6 @@ https://about.me/grohit -->
                 console.log("in tiiiiimeout 1: " + noOfRequests);
 
                 for (var i = 0; i <= noOfRequests; i++) {
-                    //////////setInterval(function() {
-                        //console.log("in tiiiiimeout 2");
                         two = $.ajax({
                             type: "POST",
                             url: '/request_accepted_counter',

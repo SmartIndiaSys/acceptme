@@ -4,7 +4,7 @@ import requests
 import datetime
 from project import db
 from datetime import timedelta
-from project.users.models import Users, Counter
+# from project.users.models import Users, Counter
 from project.users.request_acceptor import InstagramBot
 from flask_login import login_required, login_user, logout_user, current_user
 from flask import Blueprint, render_template, redirect, url_for, request, session
@@ -39,6 +39,8 @@ def request_accepted_counter():
         ctr = str(counterval.counts)
 
     counterval = None
+    client = memcache.Client([('127.0.0.1', 11211)])
+    ctr = client.get(session['insta_username'])
 
     if ctr == None:
         ctr = "0"
@@ -103,8 +105,11 @@ def accept_pending_requests():
 @users_blueprint.route('/request_accepted_count/<int:num>', methods=['GET', 'POST'])
 def request_accepted_count(num):
     counter = Counter.query.filter_by(insta_username=session['insta_username']).first()
-    if counter is not None:
-       ctr = counter.counts 
+    client = memcache.Client([('127.0.0.1', 11211)])
+    ctr = client.get(session['insta_username'])
+    
+    # if counter is not None:
+    #    ctr = counter.counts 
 
     return render_template('request_accepted_count.html', num=ctr)
 

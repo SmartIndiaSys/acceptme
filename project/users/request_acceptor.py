@@ -132,6 +132,7 @@ class InstagramBot:
         var1 = int(request_accept_count/15)
         var2 = request_accept_count%15
         counter = 0
+
         client = memcache.Client([('127.0.0.1', 11211)])
         client.set(session['insta_username'], counter)
         db.isolation_level = None
@@ -168,7 +169,6 @@ class InstagramBot:
                         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath_for_confirm))).click()
                         time.sleep(0.7)
                         counter+= 1
-
                         client.incr(session['insta_username'])
 
                         try:
