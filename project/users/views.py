@@ -39,8 +39,8 @@ def request_accepted_counter():
         ctr = str(counterval.counts)
 
     counterval = None
-    client = memcache.Client([('127.0.0.1', 11211)])
-    ctr = client.get(session['insta_username'])
+    # client = memcache.Client([('127.0.0.1', 11211)])
+    ctr = memcache.get(session['insta_username'])
 
     if ctr == None:
         ctr = "0"
@@ -105,8 +105,8 @@ def accept_pending_requests():
 @users_blueprint.route('/request_accepted_count/<int:num>', methods=['GET', 'POST'])
 def request_accepted_count(num):
     counter = Counter.query.filter_by(insta_username=session['insta_username']).first()
-    client = memcache.Client([('127.0.0.1', 11211)])
-    ctr = client.get(session['insta_username'])
+    # client = memcache.Client([('127.0.0.1', 11211)])
+    ctr = memcache.get(session['insta_username'])
     
     # if counter is not None:
     #    ctr = counter.counts 
@@ -190,8 +190,8 @@ def login():
                         next = url_for('core.pricing')
                     return redirect(next)
 
-        client = memcache.Client([('12.0.0.1', 11211)])
-        client.set(instagram_username, 0)
+        # client = memcache.Client([('12.0.0.1', 11211)])
+        memcache.set(instagram_username, 0)
     return render_template('index.html')
 
 
