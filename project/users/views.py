@@ -38,7 +38,7 @@ def request_accepted_counter():
     #     ctr = "0"  # str(session["request_accepted_counter_demo"])
 
     if counterval is not None:
-		ctr = client.get(session['insta_username']) 
+        ctr = client.get(session['insta_username']) 
 		# str(counterval.counts)
 
     counterval = None
