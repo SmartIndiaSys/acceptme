@@ -165,7 +165,7 @@ def login():
 			client.set(instagram_username, 0)
 			
             if not user_obj:
-                new_user = Users(insta_username=instagram_username)
+				new_user = Users(insta_username=instagram_username)
                 db.session.add(new_user)
                 db.session.commit()
 
