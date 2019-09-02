@@ -160,8 +160,6 @@ def login():
             return render_template('index.html', msg=msg)
 
         if insta_login_response:
-            user_obj = Users.query.filter_by(
-                insta_username=instagram_username).first()
 			session['insta_username'] = instagram_username
 			session['insta_password'] = instagram_password
 			client.set(instagram_username, 0)
