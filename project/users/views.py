@@ -23,7 +23,7 @@ def request_accepted_counter():
     try:
         if Counter:
             counterval = client.get(session['insta_username']) 
-			# Counter.query.filter_by(insta_username=session['insta_username']).first()
+            # Counter.query.filter_by(insta_username=session['insta_username']).first()
     except:
         time.sleep(0.10)
         ctr = "0"
@@ -39,7 +39,7 @@ def request_accepted_counter():
 
     if counterval is not None:
         ctr = client.get(session['insta_username']) 
-		# str(counterval.counts)
+        # str(counterval.counts)
 
     counterval = None
     #   client = memcache.Client([('127.0.0.1', 11211)])
@@ -108,7 +108,7 @@ def accept_pending_requests():
 @users_blueprint.route('/request_accepted_count/<int:num>', methods=['GET', 'POST'])
 def request_accepted_count(num):
     # counter = client.get(session['insta_username'])
-	# Counter.query.filter_by(insta_username=session['insta_username']).first()
+    # Counter.query.filter_by(insta_username=session['insta_username']).first()
     client = memcache.Client()
     ctr = client.get(session['insta_username'])
     
@@ -148,7 +148,7 @@ def login():
 
         #session['insta_username'] = instagram_username
         #session['insta_password'] = instagram_password
-		# client.set(instagram_username, 0)
+        # client.set(instagram_username, 0)
         # session['request_accepted_counter_demo'] = 0
         insta_bot = InstagramBot(instagram_username, instagram_password)
         insta_login_response = insta_bot.login()
@@ -162,8 +162,8 @@ def login():
             session['insta_username'] = instagram_username
             session['insta_password'] = instagram_password
             client = memcache.Client()
-			client.set(instagram_username, 0)
-			
+            client.set(instagram_username, 0)
+            
             if not user_obj:
                 new_user = Users(insta_username=instagram_username)
                 db.session.add(new_user)
@@ -203,6 +203,6 @@ def login():
 @users_blueprint.route('/logout')
 def logout():
     client = memcache.Client()
-	client.set(instagram_username, 0)
+    client.set(instagram_username, 0)
     logout_user()
     return redirect(url_for('core.index'))
