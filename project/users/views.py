@@ -19,7 +19,7 @@ users_blueprint = Blueprint('users', __name__, template_folder='templates')
 
 @users_blueprint.route('/request_accepted_counter', methods=['GET', 'POST'])
 def request_accepted_counter():
-    client = memcache.Client()
+    client = memcache.Client([('127.0.0.1', 11211)])
     try:
         if Counter:
             counterval = client.get(session['insta_username']) 
@@ -109,7 +109,7 @@ def accept_pending_requests():
 def request_accepted_count(num):
     # counter = client.get(session['insta_username'])
     # Counter.query.filter_by(insta_username=session['insta_username']).first()
-    client = memcache.Client()
+    client = memcache.Client([('127.0.0.1', 11211)])
     ctr = client.get(session['insta_username'])
     
     # if counter is not None:
@@ -161,7 +161,7 @@ def login():
         if insta_login_response:
             session['insta_username'] = instagram_username
             session['insta_password'] = instagram_password
-            client = memcache.Client()
+            client = memcache.Client([('127.0.0.1', 11211)])
             client.set(instagram_username, 0)
             
             if not user_obj:
@@ -202,7 +202,7 @@ def login():
 @login_required
 @users_blueprint.route('/logout')
 def logout():
-    client = memcache.Client()
+    client = memcache.Client([('127.0.0.1', 11211)])
     client.set(instagram_username, 0)
     logout_user()
     return redirect(url_for('core.index'))

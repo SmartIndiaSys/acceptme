@@ -131,7 +131,7 @@ class InstagramBot:
         counter = 0
 
         # client = memcache.Client([('127.0.0.1', 11211)])
-        client = memcache.Client()
+        client = memcache.Client([('127.0.0.1', 11211)])
         client.set(session['insta_username'], counter)
         db.isolation_level = None
         countval = Counter.query.filter_by(insta_username=session['insta_username']).first()
