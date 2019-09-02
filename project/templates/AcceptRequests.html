@@ -206,7 +206,7 @@ https://about.me/grohit -->
 
 
     <script>
-        /*
+        
         if (typeof jQuery == 'undefined') {
           alert('jq not loaded');
         }
@@ -214,18 +214,29 @@ https://about.me/grohit -->
 
         function countercall(num) {
           alert('in countercall');
+		  var noOfRequests = 0;
+		  if ($('#FormControlSelectFollowersNo').val() != "custom") {
+                    noOfRequests = $('#FormControlSelectFollowersNo').val();
+                    $('#customUserInputNumber').val(noOfRequests);
+                } else {
+                    noOfRequests = $('#customUserInputNumber').val();
+                }
+
             for(i=0;i<num;i++){
               $.ajax({
                   type: 'GET',
                   url: '/request_accepted_count',
+                    data: {
+                        'customUserInputNumber': noOfRequests
+                    },
                   success: function (data) {
                       alert(i + ' : ' + data);
-                      $('#odometer').html("<h3 style='color:white'>" +data+"</h3>");
+                      $('#odometer').html(data);//"<h3 style='color:white'>" +data+"</h3>");
                   }
               });
               setTimeout(function(){ }, 500);
             }
-        }*/
+        }
 
 /*   ********    * /
         var noOfRequests = 0;
@@ -257,7 +268,7 @@ https://about.me/grohit -->
         });
 
 
-/ *   ********    */
+/ *   ********    *
 
 
 
@@ -324,7 +335,7 @@ https://about.me/grohit -->
                 });
             });
         });
-
+*/
     </script>
 
     <script>
