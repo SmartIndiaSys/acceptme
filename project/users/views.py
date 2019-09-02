@@ -42,9 +42,8 @@ def request_accepted_counter():
 		# str(counterval.counts)
 
     counterval = None
-#    client = memcache.Client([('127.0.0.1', 11211)])
-    
-	ctr = client.get(session['insta_username'])
+    #   client = memcache.Client([('127.0.0.1', 11211)])
+    ctr = client.get(session['insta_username'])
 
     if ctr == None:
         ctr = "0"
