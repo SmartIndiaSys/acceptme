@@ -4,7 +4,7 @@ import requests
 import datetime
 from project import db
 from datetime import timedelta
-# from project.users.models import Users, Counter
+from project.users.models import Users, Counter
 from project.users.request_acceptor import InstagramBot
 from flask_login import login_required, login_user, logout_user, current_user
 from flask import Blueprint, render_template, redirect, url_for, request, session
