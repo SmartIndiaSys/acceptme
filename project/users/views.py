@@ -139,7 +139,6 @@ def live_counter():
             return render_template('LiveCounter.html')
     return render_template('LiveCounter.html')
 
-
 @users_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
 
@@ -160,12 +159,12 @@ def login():
             return render_template('index.html', msg=msg)
 
         if insta_login_response:
-			session['insta_username'] = instagram_username
-			session['insta_password'] = instagram_password
-			client.set(instagram_username, 0)
+            session['insta_username'] = instagram_username
+            session['insta_password'] = instagram_password
+            client.set(instagram_username, 0)
 			
             if not user_obj:
-				new_user = Users(insta_username=instagram_username)
+                new_user = Users(insta_username=instagram_username)
                 db.session.add(new_user)
                 db.session.commit()
 
@@ -202,6 +201,6 @@ def login():
 @login_required
 @users_blueprint.route('/logout')
 def logout():
-	client.set(instagram_username, 0)
+    client.set(instagram_username, 0)
     logout_user()
     return redirect(url_for('core.index'))
