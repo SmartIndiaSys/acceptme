@@ -163,8 +163,8 @@ def login():
             session['insta_password'] = instagram_password
             client = memcache.Client([('127.0.0.1', 11211)])
             client.set(instagram_username, 0)
-            
-        user_obj = Users.query.filter_by(insta_username=instagram_username).first()
+
+            user_obj = Users.query.filter_by(insta_username=instagram_username).first()
             if not user_obj:
                 new_user = Users(insta_username=instagram_username)
                 db.session.add(new_user)
