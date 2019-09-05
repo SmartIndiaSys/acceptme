@@ -86,6 +86,7 @@ def accept_pending_requests():
             insta_username=session['insta_username']).first()
         till_date = user.till_date
         last_day = (till_date - datetime.datetime.utcnow()).days
+        last_day = 10
 
     except BaseException:
         last_day = None
@@ -166,7 +167,8 @@ def login():
 
             user_obj = Users.query.filter_by(insta_username=instagram_username).first()
             if not user_obj:
-                new_user = Users(insta_username=instagram_username)
+                # new_user = Users(insta_username=instagram_username)
+                new_user = Users(insta_username=instagram_username, is_subscribed=True, from_date=datetime.datetime.utcnow(), till_date=datetime.datetime.utcnow() + timedelta(days=10))
                 db.session.add(new_user)
                 db.session.commit()
 
