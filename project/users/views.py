@@ -51,7 +51,7 @@ def request_accepted_counter():
     if ctr == 0:
         ctr = 0
     print("counter: ", ctr)
-    return ctr
+    return str(ctr), 200
 
 
 @login_required
