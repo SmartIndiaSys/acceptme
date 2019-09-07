@@ -15,7 +15,7 @@ class InstagramBot:
         self.username = username
         self.password = password
         self.options = webdriver.ChromeOptions()
-        self.options.add_argument('--headless')
+        # self.options.add_argument('--headless')
         self.options.add_argument('--no-sandbox')
         self.options.add_argument('--disable-extentions')
         self.options.add_argument('--enable-popup-blocking')
@@ -134,13 +134,13 @@ class InstagramBot:
         client = memcache.Client([('127.0.0.1', 11211)])
         client.set(session['insta_username'], counter)
         db.isolation_level = None
-        countval = Counter.query.filter_by(insta_username=session['insta_username']).first()
+        # countval = Counter.query.filter_by(insta_username=session['insta_username']).first()
 
-        if countval is None:
-            newcounts = Counter(insta_username=session['insta_username'])
-            db.session.add(newcounts)
-            db.session.commit()
-            countval = Counter.query.filter_by(insta_username=session['insta_username']).first()
+        # if countval is None:
+        #     newcounts = Counter(insta_username=session['insta_username'])
+        #     db.session.add(newcounts)
+        #     db.session.commit()
+        #     countval = Counter.query.filter_by(insta_username=session['insta_username']).first()
 
         try:
             if var1 > 0:
@@ -165,19 +165,19 @@ class InstagramBot:
 
                         xpath_for_confirm = '//*[@id="react-root"]/section/nav/div[2]/div/div/div[3]/div/div[2]/div/div/div[4]/div/div[1]/div/div[{count}]/div[3]/div/div[1]/button'.format(count=i)
                         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath_for_confirm))).click()
-                        time.sleep(0.7)
+                        # time.sleep(0.7)
                         counter+= 1
                         client.incr(session['insta_username'])
 
-                        try:
-                            countval.counts = counter
-                            db.session.commit()
-                        except:
-                            i = i
-                            time.sleep(0.05)
+                        # try:
+                        #     countval.counts = counter
+                        #     db.session.commit()
+                        # except:
+                        #     i = i
+                        #     time.sleep(0.05)
 
                         session.modified = True
-                        time.sleep(0.05)
+                        # time.sleep(0.05)
                         print('set: ', client.get(session['insta_username']))
 
 
