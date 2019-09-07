@@ -20,6 +20,8 @@ users_blueprint = Blueprint('users', __name__, template_folder='templates')
 @users_blueprint.route('/request_accepted_counter', methods=['GET', 'POST'])
 def request_accepted_counter():
     client = memcache.Client([('127.0.0.1', 11211)])
+    print(session['insta_username'])
+    ctr = 0
     ctr = client.get(session['insta_username']) 
     # try:
     #     if Counter:
@@ -46,8 +48,8 @@ def request_accepted_counter():
     # #   client = memcache.Client([('127.0.0.1', 11211)])
     # ctr = client.get(session['insta_username'])
 
-    if ctr == None:
-        ctr = "0"
+    if ctr == 0:
+        ctr = 0
     print("counter: ", ctr)
     return ctr
 
