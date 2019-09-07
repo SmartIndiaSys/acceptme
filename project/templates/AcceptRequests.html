@@ -223,7 +223,10 @@ https://about.me/grohit -->
                     noOfRequests = $('#customUserInputNumber').val();
                 }
 */
-            for(i=0;i<num;i++){
+            //for(i=0;i<num;i++){
+                var i=0;
+            while(i<=num){
+                j = 0;
               $.ajax({
                   type: 'GET',
                   url: '/request_accepted_counter',
@@ -233,10 +236,11 @@ https://about.me/grohit -->
                   success: function (data) {
                       console.log(i + ' : ' + data + ' : ' + num);
                       $('#odometer').html(data);//"<h3 style='color:white'>" +data+"</h3>");
-                      i=data;
+                      j=data;
                   }
               });
               setTimeout(function(){ }, 500);
+                  i=j;
             }
         }
 
