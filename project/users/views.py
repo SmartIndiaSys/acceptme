@@ -20,13 +20,14 @@ users_blueprint = Blueprint('users', __name__, template_folder='templates')
 @users_blueprint.route('/request_accepted_counter', methods=['GET', 'POST'])
 def request_accepted_counter():
     client = memcache.Client([('127.0.0.1', 11211)])
-    try:
-        if Counter:
-            counterval = client.get(session['insta_username']) 
-            # Counter.query.filter_by(insta_username=session['insta_username']).first()
-    except:
-        time.sleep(0.10)
-        ctr = "0"
+    ctr = client.get(session['insta_username']) 
+    # try:
+    #     if Counter:
+    #         counterval = client.get(session['insta_username']) 
+    #         # Counter.query.filter_by(insta_username=session['insta_username']).first()
+    # except:
+    #     time.sleep(0.10)
+    #     ctr = "0"
     # except sqlite3.OperationalError as e:
     #     print('[-] Sqlite operational error: {} Retrying...'.format(e))
     #     ctr = "0"
@@ -37,13 +38,13 @@ def request_accepted_counter():
     #     # time.sleep(0.10)
     #     ctr = "0"  # str(session["request_accepted_counter_demo"])
 
-    if counterval is not None:
-        ctr = client.get(session['insta_username']) 
-        # str(counterval.counts)
+    # if counterval is not None:
+    #     ctr = client.get(session['insta_username']) 
+    #     # str(counterval.counts)
 
-    counterval = None
-    #   client = memcache.Client([('127.0.0.1', 11211)])
-    ctr = client.get(session['insta_username'])
+    # # counterval = None
+    # #   client = memcache.Client([('127.0.0.1', 11211)])
+    # ctr = client.get(session['insta_username'])
 
     if ctr == None:
         ctr = "0"
