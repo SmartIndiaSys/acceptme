@@ -132,7 +132,7 @@ class InstagramBot:
 
         # client = memcache.Client([('127.0.0.1', 11211)])
         client = memcache.Client([('127.0.0.1', 11211)])
-        client.set(session['insta_username'], counter)
+        client.set(session['insta_username'], 0)
         db.isolation_level = None
         # countval = Counter.query.filter_by(insta_username=session['insta_username']).first()
 
@@ -164,7 +164,7 @@ class InstagramBot:
                     for i in range(1, 16):
 
                         xpath_for_confirm = '//*[@id="react-root"]/section/nav/div[2]/div/div/div[3]/div/div[2]/div/div/div[4]/div/div[1]/div/div[{count}]/div[3]/div/div[1]/button'.format(count=i)
-                        WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, xpath_for_confirm))).click()
+                        WebDriverWait(driver, 2).until(EC.presence_of_element_located((By.XPATH, xpath_for_confirm))).click()
                         # time.sleep(0.7)
                         counter+= 1
                         client.incr(session['insta_username'])

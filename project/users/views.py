@@ -94,16 +94,16 @@ def accept_pending_requests():
     except BaseException:
         last_day = None
 
-    countval = Counter.query.filter_by(insta_username=session['insta_username']).first()
+    # countval = Counter.query.filter_by(insta_username=session['insta_username']).first()
 
-    if countval is None:
-        newcounts = Counter(insta_username=session['insta_username'])
-        db.session.add(newcounts)
-        db.session.commit()
-        countval = Counter.query.filter_by(insta_username=session['insta_username']).first()
+    # if countval is None:
+    #     newcounts = Counter(insta_username=session['insta_username'])
+    #     db.session.add(newcounts)
+    #     db.session.commit()
+    #     countval = Counter.query.filter_by(insta_username=session['insta_username']).first()
 
-    countval.counts = 0
-    db.session.commit()
+    # countval.counts = 0
+    # db.session.commit()
 
     return render_template(
         'AcceptRequests.html', instagram_username=session['insta_username'], last_day=last_day)
