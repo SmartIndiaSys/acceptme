@@ -224,8 +224,8 @@ https://about.me/grohit -->
                 }
 */
             //for(i=0;i<num;i++){
-                var i=0;
-            while(i<=num){
+            var i=0;
+            do{
                 j = 0;
               $.ajax({
                   type: 'GET',
@@ -241,7 +241,7 @@ https://about.me/grohit -->
               });
               setTimeout(function(){ }, 500);
                   i=j;
-            }
+            }while(i<num)
         }
 
 /*   ********    */
