@@ -227,9 +227,9 @@ https://about.me/grohit -->
               $.ajax({
                   type: 'GET',
                   url: '/request_accepted_counter',
-                    data: {
+                    /*data: {
                         'customUserInputNumber': noOfRequests
-                    },
+                    },*/
                   success: function (data) {
                       alert(i + ' : ' + data);
                       $('#odometer').html(data);//"<h3 style='color:white'>" +data+"</h3>");
