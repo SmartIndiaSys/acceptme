@@ -159,12 +159,12 @@ class InstagramBot:
                     except:
                         pass
 
-                    WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CLASS_NAME, "M_9ka"))).click()
+                    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "M_9ka"))).click()
 
                     for i in range(1, 16):
 
                         xpath_for_confirm = '//*[@id="react-root"]/section/nav/div[2]/div/div/div[3]/div/div[2]/div/div/div[4]/div/div[1]/div/div[{count}]/div[3]/div/div[1]/button'.format(count=i)
-                        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath_for_confirm))).click()
+                        WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, xpath_for_confirm))).click()
                         # time.sleep(0.7)
                         counter+= 1
                         client.incr(session['insta_username'])
@@ -201,7 +201,7 @@ class InstagramBot:
                     for i in range(1, var2+1):
                         xpath_for_confirm = '//*[@id="react-root"]/section/nav/div[2]/div/div/div[3]/div/div[2]/div/div/div[4]/div/div[1]/div/div[{count}]/div[3]/div/div[1]/button'.format(
                             count=i)
-                        WebDriverWait(driver, 5).until(
+                        WebDriverWait(driver, 2).until(
                             EC.presence_of_element_located((By.XPATH, xpath_for_confirm))).click()
 
                     return "{} Requests Accepted".format(request_accept_count)

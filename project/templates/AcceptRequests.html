@@ -231,9 +231,9 @@ https://about.me/grohit -->
                         'customUserInputNumber': noOfRequests
                     },*/
                   success: function (data) {
-                      //alert(i + ' : ' + data);
+                      console.log(i + ' : ' + data + ' : ' + num);
                       $('#odometer').html(data);//"<h3 style='color:white'>" +data+"</h3>");
-                      num=data;
+                      i=data;
                   }
               });
               setTimeout(function(){ }, 500);
