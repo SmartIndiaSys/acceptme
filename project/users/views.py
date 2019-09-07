@@ -208,6 +208,6 @@ def login():
 @users_blueprint.route('/logout')
 def logout():
     client = memcache.Client([('127.0.0.1', 11211)])
-    client.set(instagram_username, 0)
+    client.set(session['insta_username'], 0)
     logout_user()
     return redirect(url_for('core.index'))
