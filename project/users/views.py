@@ -167,15 +167,17 @@ def login():
 
             user_obj = Users.query.filter_by(insta_username=instagram_username).first()
             if not user_obj:
-                # new_user = Users(insta_username=instagram_username)
-                new_user = Users(insta_username=instagram_username, is_subscribed=True, from_date=datetime.datetime.utcnow(), till_date=datetime.datetime.utcnow() + timedelta(days=10))
+                new_user = Users(insta_username=instagram_username)
+                # new_user = Users(insta_username=instagram_username, is_subscribed=True, from_date=datetime.datetime.utcnow(), till_date=datetime.datetime.utcnow() + timedelta(days=10))
                 db.session.add(new_user)
                 db.session.commit()
 
         user = Users.query.filter_by(insta_username=instagram_username).first()
         if insta_login_response and user is not None:
             user.is_subscribed = True
-            user.till_date = datetime.datetime.utcnow() + timedelta(days=1)
+            user.till_date = datetime.datetime.utcnow() + timedelta(days=10)
+            db.session.commit()
+
             if user.is_subscribed:
                 if datetime.datetime.utcnow() < user.till_date:
                     ok = login_user(user)
